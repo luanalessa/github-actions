@@ -1,0 +1,12 @@
+name: Repository Dispatch
+
+on: 
+  repository_dispatch:
+    type: [alpha]
+
+jobs:
+  using-repository-dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Using Repository Dispatch
+        run: echo ${{ github.event.client_payload.env}}
