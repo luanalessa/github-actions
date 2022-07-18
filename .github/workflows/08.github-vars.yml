@@ -1,0 +1,22 @@
+name: ENV Variables
+
+on: push
+
+env:
+  WORKFLOW_ENV : "Eu fico visivel em todo workflow"
+
+jobs:
+  using-env-vars:
+    runs-on: ubuntu-latest
+    env:
+      JOB_ENV: "Eu fico visivel dentro desse job"
+    steps:
+      - name: Using ENV Variables
+        env:
+          STEP_ENV: "Eu fico visivel dentro desse step"
+        run: |
+          echo "Home: ${HOME}"
+          echo "Workflow: ${GITHUB_WORKFLOW}"
+          echo "Github Actor: ${GITHUB_ACTOR}"
+          echo "Github REPOSITORY: ${GITHUB_REPOSITORY}"
+
