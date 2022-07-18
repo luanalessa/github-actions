@@ -1,0 +1,26 @@
+name: ENV Variables
+
+on: push
+
+env:
+  WORKFLOW_ENV : "Eu fico visivel em todo workflow"
+
+jobs:
+  using-env-vars:
+    runs-on: ubuntu-latest
+    env:
+      JOB_ENV: "Eu fico visivel dentro desse job"
+    steps:
+      - name: Using ENV Variables
+        env:
+          STEP_ENV: "Eu fico visivel dentro desse step"
+        run: |
+          echo "WORKFLOW_ENV: ${WORKFLOW_ENV}"
+          echo "JOB_ENV: ${JOB_ENV}"
+          echo "STEP_ENV: ${STEP_ENV}"
+      - name: Using ENV Variables that I can't access
+        run: |
+          echo "WORKFLOW_ENV: ${WORKFLOW_ENV}"
+          echo "JOB_ENV: ${JOB_ENV}"
+          echo "STEP_ENV: ${STEP_ENV}"
+
