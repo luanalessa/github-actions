@@ -1,6 +1,11 @@
 name: Hello world
 
-on: [pull_request]
+on: 
+  pull_request:
+    branches:
+      - main
+      - features
+      - realase
 
 jobs: 
   run-shell-command:
@@ -10,5 +15,4 @@ jobs:
         run: echo "Hello world"
       - name: Multiple commands
         run: |
-          node -v
-          npm -v
+      
