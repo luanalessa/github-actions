@@ -1,0 +1,17 @@
+name: Decrypt file
+
+on: push
+
+jobs:
+  using-env-vars:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Using GPG
+        run: gpg --quiet --batch --yes --decrypt --passphrase="$PASSPHRASE" --output $HOME/secret.json secret.json.gpg
+        env:
+          PASSPHRASE: ${{secrets.WORKFLOW_ENV}}
+      - name: Print our file
+        run: cat $HOME/secret.json
+          
+
