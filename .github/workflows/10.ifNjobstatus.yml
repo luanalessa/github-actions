@@ -5,13 +5,14 @@ on: pull_request
 jobs:
   if-keys:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
     steps:
       - uses: actions/checkout@v1
       - name: Using GPG
+        timeout-minutes: 60
         run: gpg --quiet --batch --yes --decrypt --passphrase="$PASSPHRASE" --output $HOME/secret.json secret.json.gpg
         env:
           PASSPHRASE: ${{secrets.WORKFLOW_ENV}}
+        continue-on-error: true
       - name: Print our file
         if: always()
         run: cat $HOME/secret.json

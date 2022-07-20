@@ -1,9 +1,10 @@
-name: Container
+name: Containers
 
 on: push
+  
 
 jobs:
-  node-docker:
+  node-version:
     runs-on: ubuntu-latest
     services:
       app:
@@ -13,14 +14,20 @@ jobs:
       mongo:
         image: mongo
         ports:
-          - "27017:27017"
-    steps: 
+          - "27017:27016"
+    steps:
       - name: Post a user
         run: |
           curl -X POST http://localhost:3001/api/user \
           -H "Content-Type: application/json" \
-          -d '{"address": "dwded", "username": "hello"}' 
+          -d '{"address":"Ceará", "username":"Lessa"}'
       - name: Get a user
-        run : curl http://localhost:3001/api/users
-          
+        run: curl http://localhost:3001/api/users
 
+        
+      
+
+
+      
+      
+      
