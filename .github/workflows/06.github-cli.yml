@@ -1,6 +1,6 @@
 name: Using Github Cli
 
-on: push
+on: pull_request
     
 jobs:
   create_commit:

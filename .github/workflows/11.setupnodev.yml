@@ -1,0 +1,24 @@
+name: Nodejs
+
+on: push
+  
+
+jobs:
+  node-version:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node_version: [6,8,10] 
+        include:
+          - node_version: 8
+            is_ubuntu: "true"
+      fail-fast: true 
+      max-parallel: 3 
+    steps:
+      - name: Log node version
+        run: node -v
+      - uses: actions/setup-node@v1 
+        with:
+          node-version: ${{matrix.node_version}}
+      - name: Log node version
+        run: echo ${{matrix.is_ubuntu}}

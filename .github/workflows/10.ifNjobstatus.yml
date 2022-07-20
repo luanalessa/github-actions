@@ -1,10 +1,11 @@
-name: Decrypt file
+name: Using Job Status
 
 on: pull_request
 
 jobs:
-  using-env-vars:
+  if-keys:
     runs-on: ubuntu-latest
+    if: github.event_name == 'push'
     steps:
       - uses: actions/checkout@v1
       - name: Using GPG
@@ -12,6 +13,7 @@ jobs:
         env:
           PASSPHRASE: ${{secrets.WORKFLOW_ENV}}
       - name: Print our file
+        if: always()
         run: cat $HOME/secret.json
           
 
